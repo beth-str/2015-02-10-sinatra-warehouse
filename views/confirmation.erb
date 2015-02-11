@@ -1,0 +1,24 @@
+<% 
+require 'sqlite3'
+DATABASE = SQLite3::Database.new("warehouse.db")
+
+x = Product.new(params)
+x.insert
+
+%>
+
+
+<h2>Success!!</h2>
+
+
+<p><%= params[:title] %> has been added to the database!</p>
+
+
+<h3>Your cost per gallon is: $<%= sprintf("%.2f", (@result)) %></h3> 
+
+<p><a href="/calc">Click here to use the calculator again</a>
+
+
+
+<p><a href="/">Return to the Main Menu</a></p>
+  
