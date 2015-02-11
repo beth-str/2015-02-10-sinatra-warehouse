@@ -1,11 +1,3 @@
-<% x = Product.new(params) %>
-<% x.insert %>
-
 <h2>Success!!</h2>
 
-
 <p>New Product: <strong><%= params[:title] %></strong> has been added to the database!</p>
-
-<%= y = Product.where_title_is(params[:title]) %>
-<%= y.display %>
-
