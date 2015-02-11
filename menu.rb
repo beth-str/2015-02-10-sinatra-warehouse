@@ -1,11 +1,12 @@
 require "sinatra"
 # require 'activesupport'
 require 'sqlite3'
-require_relative 'db_setup.rb'
-require_relative 'category.rb'
-require_relative 'location.rb'
-require_relative 'product.rb'
-require_relative "main-old.rb"
+# DATABASE = SQLite3::Database.new("warehouse.db")
+require_relative "2015-02-05-warehouse/category"
+require_relative "2015-02-05-warehouse/db_setup"
+require_relative "2015-02-05-warehouse/location"
+require_relative "2015-02-05-warehouse/product"
+
 
 # require_relative "module"
 # include 'WarehouseHelper'
@@ -18,6 +19,11 @@ end
 
 get "/add_product" do
   erb :add_product, :layout => :boilerplate
+end
+
+get "/add_product_confirm" do
+  
+  erb :add_product_confirm, :layout => :boilerplate
 end
 
 get "/edit_product" do

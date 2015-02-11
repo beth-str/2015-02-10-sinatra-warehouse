@@ -23,6 +23,7 @@ body {
 	}
 p { 
 	margin-top: 0; 
+  font-size: 12;
 	text-align: justify;
 	}
 h3 { 
@@ -33,7 +34,7 @@ h3 {
 	}
 a:link { 
 	font-weight: bold; 
-	text-decoration: none; 
+	text-decoration: underline; 
 	color: #512BA1;
 	}
 a:visited { 
@@ -113,7 +114,7 @@ header {
 	}
 
 footer { 
-	text-align: center; 
+	text-align: right; 
 	}
 footer a:link, footer a:visited { 
 	margin-right: 20px; 
