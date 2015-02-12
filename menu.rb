@@ -1,11 +1,12 @@
 require 'pry'
 require 'sinatra'
 require 'sqlite3'
-DATABASE = SQLite3::Database.new("warehouse.db")
-require_relative "2015-02-05-warehouse/category"
-require_relative "2015-02-05-warehouse/db_setup"
-require_relative "2015-02-05-warehouse/location"
-require_relative "2015-02-05-warehouse/product"
+DATABASE = SQLite3::Database.new("database/warehouse.db")
+require_relative "models/category"
+require_relative "models/db_setup"
+require_relative "models/location"
+require_relative "models/product"
+DATABASE.results_as_hash = true
 
 get "/" do
   erb :homepage, :layout => :boilerplate
@@ -42,10 +43,6 @@ get "/show_product" do
   erb :show_product, :layout => :boilerplate
 end
 
-get "/show_product_confirm" do
-  erb :show_product_confirm, :layout => :boilerplate
-end
-
 get "/add_genre" do
   erb :add_genre, :layout => :boilerplate
 end
@@ -63,6 +60,10 @@ end
 get "/delete_genre_confirm" do
   x = DATABASE.execute("DELETE FROM categories WHERE id = 'params[:id]'")
   erb :delete_genre_confirm, :layout => :boilerplate
+end
+
+get "/show_genre" do
+  erb :show_genre, :layout => :boilerplate
 end
 
 get "/add_location" do
@@ -84,10 +85,6 @@ get "/delete_location_confirm" do
   erb :delete_location_confirm, :layout => :boilerplate
 end
 
-get "/show_product" do
-  erb :show_product, :layout => :boilerplate
-end
-
-get "/show_product_confirm" do
-  erb :show_product_confirm, :layout => :boilerplate
+get "/show_location" do
+  erb :show_location, :layout => :boilerplate
 end

@@ -9,8 +9,38 @@
     <body>
       <h1>Fantastic Books Inventory Management System</h1>
       <hr>
-      <%= yield %>
-      
+      <table width="800px" padding="10px" border-right="1px" border-color="#7D775C" v-align="top">
+        <tr>
+          <td width="250px" valign="top">
+              <h2><a href="/">Main Menu</a></h2> 
+              <h3 style="font:verdana, sans-serif; font-size=8px">Product</h3>
+                <a href="/add_product">Add New Product</a>
+                <br>
+                <a href="/edit_product">Edit Product</a>
+                <br>
+                <a href="/delete_product">Delete Product</a>
+                <br>
+                <a href="/show_product">View All Products</a>
+
+              <h3 style="font:verdana, sans-serif">Category (Genre)</h3>
+                <a href="/add_genre">Add New Genre</a>
+                <br>
+                <a href="/delete_genre">Delete Genre</a>
+                <br>
+                <a href="/show_genre">View All Genres</a>
+
+              <h3 style="font:verdana, sans-serif">Location</h3>
+                <a href="/add_location">Add New Location</a>
+                <br>
+                <a href="/delete_location">Delete Location</a>
+                <br>
+                <a href="/show_location">View All Locations</a>
+            </td>
+            <td valign="top" padding="50px 100px 0px 0px">
+              <%= yield %>
+            </td>
+          </tr>
+      </table>
       <hr>
       <footer><a href="/">Return to the Main Menu</a></footer>
     </body>

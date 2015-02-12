@@ -1,0 +1,6 @@
+<h2>Current Products:</h2>
+
+  <% @show_all = Product.all %>
+  <% @show_all.each do |x| %>
+    <h3><%= x["id"] %>. <%= x["title"] %>  by  <%= x["author"] %> (Price: $<%= x["price"] %>)</h3>
+  <% end %>
