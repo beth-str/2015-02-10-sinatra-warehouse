@@ -17,7 +17,7 @@ class Location
   attr_accessor :city
   
   def initialize(options)
-    # @id   = options["id"]
+    @id   = options["id"]
     @city = options["city"]
   end
   
@@ -47,10 +47,13 @@ class Location
   # State Changes: None
   #---------------------------------------------------------
   def self.all
-    x = DATABASE.execute("SELECT * FROM locations")
-    x.each do |x|
-        puts "#{x[0]}: #{x[1]}"
-    end
+    results = DATABASE.execute("SELECT * FROM locations")
+    @results_as_objects = []
+      results.each do |r|
+        @results_as_objects << Location.new(r)
+      end
+      results_as_objects = @results_as_objects
+      return results_as_objects
   end
 
   def display
@@ -89,12 +92,16 @@ class Location
   # State Changes: Deletes location
   #---------------------------------------------------------
   def self.delete(id_to_remove)
-    x = DATABASE.execute("SELECT location_id FROM products WHERE location_id = #{id_to_remove}")
-    if x.length == 0
       DATABASE.execute("DELETE FROM locations WHERE id = #{id_to_remove}")
-    else
-      DATABASE.execute("SELECT * FROM products WHERE location_id = #{id_to_remove}")
-    end
   end
+
+  # def self.delete(id_to_remove)
+  #   x = DATABASE.execute("SELECT location_id FROM products WHERE location_id = #{id_to_remove}")
+  #   if x.length == 0
+  #     DATABASE.execute("DELETE FROM locations WHERE id = #{id_to_remove}")
+  #   else
+  #     DATABASE.execute("SELECT * FROM products WHERE location_id = #{id_to_remove}")
+  #   end
+  # end
 
 end

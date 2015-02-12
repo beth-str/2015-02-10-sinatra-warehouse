@@ -17,7 +17,7 @@ class Category
   attr_accessor :genre
   
   def initialize(options)
-    # @id = options["id"]
+    @id = options["id"]
     @genre = options["genre"]
   end
 
@@ -48,10 +48,14 @@ class Category
     # State Changes: None
   #---------------------------------------------------------
   def self.all
-    x = DATABASE.execute("SELECT * FROM categories")
-    x.each do |x|
-        puts "#{x[0]}: #{x[1]}"
+    results = DATABASE.execute("SELECT * FROM categories")
+    @results_as_objects = []
+      results.each do |r|     # r is a hash
+          # this loops through and creates an array of objects
+      @results_as_objects << Category.new(r)
       end
+      results_as_objects = @results_as_objects
+      return results_as_objects
   end
   
   
@@ -80,6 +84,15 @@ class Category
   end
   
 
+
+  def self.delete(id_to_remove)
+      DATABASE.execute("DELETE FROM categories WHERE id = #{id_to_remove}")
+  end
+
+
+
+
+
   #---------------------------------------------------------
     # Public: .delete
     # Deletes a single genre if no products are assigned to it
@@ -90,14 +103,14 @@ class Category
     #
     # State Changes: Deletes genre
   #---------------------------------------------------------
-  def self.delete(id_to_remove)
-    #taking one record in the db and deleting it
-    x = DATABASE.execute("SELECT category_id FROM products WHERE category_id = #{id_to_remove}")
-    if x.length == 0
-      DATABASE.execute("DELETE FROM categories WHERE id = #{id_to_remove}")
-    else
-      DATABASE.execute("SELECT * FROM products WHERE category_id = #{id_to_remove}")
-    end
-  end
+  # def self.delete(id_to_remove)
+  #   #taking one record in the db and deleting it
+  #   x = DATABASE.execute("SELECT category_id FROM products WHERE category_id = #{id_to_remove}")
+  #   if x.length == 0
+  #     DATABASE.execute("DELETE FROM categories WHERE id = #{id_to_remove}")
+  #   else
+  #     DATABASE.execute("SELECT * FROM products WHERE category_id = #{id_to_remove}")
+  #   end
+  # end
   
 end

@@ -1,14 +1,11 @@
 <h2>Current Locations:</h2>
 
-  <% @show_all = Location.all %>
-  <% @show_all.each do |x| %>
-    <h3><%= x["id"] %>. <%= x["city"] %></h3>
-        <p class=indent>Products assigned to <strong><%= x["city"] %></strong>:<br>
-        <% @products = Product.all %>
+  <% @results_as_objects.each do |x| %>
+    <h3><%= x.id %>. <%= x.city %></h3>
+        <p class=indent>Products assigned to <strong><%= x.city %></strong>:</p>
         <% @products.each do |y| %>
-          <% if y["location_id"] == x["id"]%>
-          <p class=indent-more><%= y["id"] %>. <%= y["title"] %>  by  <%= y["author"] %><br></p>
+          <% if y.location_id == x.id %>
+          <p class=indent-more><%= y.id %>. <%= y.title %>  by   <%= y.author %></p>
           <% end %>
         <% end %>
   <% end %>
-    

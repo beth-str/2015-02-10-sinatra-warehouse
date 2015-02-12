@@ -31,6 +31,7 @@ class Product
   attr_accessor :isbn, :title, :author, :description, :cost, :price, :quantity, :category_id, :location_id
 
   def initialize(options)
+    @id           = options["id"]
     @isbn         = options["isbn"]
     @title        = options["title"]
     @author       = options["author"]
@@ -94,7 +95,7 @@ class Product
   # "Translates" between the location_id and the actual name of the city
   #---------------------------------------------------------
   def city
-    DATABASE.execute("SELECT city FROM products INNER JOIN locations ON Products.location_id = Locations.id WHERE title = 'book_to_edit'8")
+    DATABASE.execute("SELECT city FROM products INNER JOIN locations ON Products.location_id = Locations.id WHERE title = 'book_to_edit'")
   end
 
   #---------------------------------------------------------
@@ -196,10 +197,13 @@ class Product
   # Displays all products
   #---------------------------------------------------------
   def self.all
-    x = DATABASE.execute("SELECT * FROM products")
-    x.each do |x|
-        puts "#{x[0]}: #{x[2]} by #{x[3]}"
-    end
+    results = DATABASE.execute("SELECT * FROM products")
+    @results_as_objects = []
+      results.each do |r|
+        @results_as_objects << Product.new(r)
+      end
+      results_as_objects = @results_as_objects
+      return results_as_objects
   end
 
   #---------------------------------------------------------
@@ -243,3 +247,15 @@ class Product
   end
 
 end
+
+
+def self.where_category_id_is(id)
+    @products = DATABASE.execute("SELECT title FROM products INNER JOIN categories ON Products.category_id = Categories.id WHERE category_id = #{id}")
+end
+
+  def self.where_location_id_is(id)
+    @products = DATABASE.execute("SELECT title FROM products INNER JOIN categories ON Products.location_id = Locations.id WHERE location_id = #{id}")
+  end
+
+
+

@@ -2,5 +2,5 @@
 
   <% @show_all = Product.all %>
   <% @show_all.each do |x| %>
-    <h3><%= x["id"] %>. <%= x["title"] %>  by  <%= x["author"] %> (Price: $<%= x["price"] %>)</h3>
+    <h4 class=indent><%= x.id %> - <%= x.title %>  by  <%= x.author %> (Price: $<%= x.price %>)</h4>
   <% end %>

@@ -1,7 +1,11 @@
-<h3>Warning: If products are assigned to this genre, it cannot be deleted.</h3>
+<h2>Warning: If products are assigned to this genre, it cannot be deleted.</h2>
 
-<% x = Category.all %>
-<%= x.display %>
+<h3>Current Genres:</h3>
+  <% @results_as_objects.each do |x| %>
+    <h4 class="indent"><%= x.id %>. <%= x.genre %></h4>
+  <% end %>
+
+<hr>
 
 <form action="/delete_genre_confirm">
   <p>Enter the id of the genre to be deleted :</p>

@@ -2,8 +2,8 @@ require 'pry'
 require 'sinatra'
 require 'sqlite3'
 DATABASE = SQLite3::Database.new("database/warehouse.db")
-require_relative "models/category"
 require_relative "models/db_setup"
+require_relative "models/category"
 require_relative "models/location"
 require_relative "models/product"
 DATABASE.results_as_hash = true
@@ -54,15 +54,27 @@ get "/add_genre_confirm" do
 end
 
 get "/delete_genre" do
+  @results_as_objects = Category.all
   erb :delete_genre, :layout => :boilerplate
 end
 
+before "/delete_genre_confirm" do
+  puts "#{params[:id]}"
+  @products = Product.where_category_id_is(params[:id].to_i)
+  if @products != []
+    request.path_info = "/error"
+  end
+end
+
 get "/delete_genre_confirm" do
-  x = DATABASE.execute("DELETE FROM categories WHERE id = 'params[:id]'")
+  @id = params[:id]
+  Category.delete(params[:id])
   erb :delete_genre_confirm, :layout => :boilerplate
 end
 
 get "/show_genre" do
+  @results_as_objects = Category.all
+  @products = Product.all 
   erb :show_genre, :layout => :boilerplate
 end
 
@@ -77,14 +89,28 @@ get "/add_location_confirm" do
 end
 
 get "/delete_location" do
+  @results_as_objects = Location.all
   erb :delete_location, :layout => :boilerplate
 end
 
+before "/delete_location_confirm" do
+  @products = Product.search_where_location_id_is(params[:id])
+  if @products != []
+    request.path_info = "/error"
+  end
+end
+
 get "/delete_location_confirm" do
-  x = DATABASE.execute("DELETE FROM locations WHERE id = 'params[:id]'")
+  Location.delete(params[:id])
   erb :delete_location_confirm, :layout => :boilerplate
 end
 
 get "/show_location" do
+  @results_as_objects = Location.all
+  @products = Product.all 
   erb :show_location, :layout => :boilerplate
+end
+
+get "/error" do
+erb :error, :layout => :boilerplate
 end
