@@ -1,13 +1,14 @@
-<h2>Warning: If products are assigned to this location, it cannot be deleted.</h2>
+<h2 font-size="16px">Warning: If products are assigned to this location, it cannot be deleted.</h2>
 
 <h3>Current Locations:</h3>
-
   <% @results_as_objects.each do |x| %>
-    <h4><%= x.id %>. <%= x.genre %></h4>
+    <h4 class="indent"><%= x.id %>. <%= x.city %></h4>
   <% end %>
+
 <hr>
+
 <form action="/delete_location_confirm">
-  <p>Enter the location to be deleted:</p>
+  <p>Enter the id of the location to be deleted:</p>
   <p>Location ID:<br>
   <input type="text" required name="id"></p> 
   <input type="submit">

@@ -246,16 +246,12 @@ class Product
       DATABASE.execute("DELETE FROM products WHERE title = '#{title}'")
   end
 
-end
 
-
-def self.where_category_id_is(id)
-    @products = DATABASE.execute("SELECT title FROM products INNER JOIN categories ON Products.category_id = Categories.id WHERE category_id = #{id}")
-end
-
-  def self.where_location_id_is(id)
-    @products = DATABASE.execute("SELECT title FROM products INNER JOIN categories ON Products.location_id = Locations.id WHERE location_id = #{id}")
+  def self.where_category_id_is(id)
+      @products = DATABASE.execute("SELECT title FROM products INNER JOIN categories ON Products.category_id = Categories.id WHERE category_id = #{id}")
   end
 
-
-
+    def self.where_location_id_is(id)
+      @products = DATABASE.execute("SELECT title FROM products INNER JOIN locations ON Products.location_id = Locations.id WHERE location_id = #{id}")
+    end
+end

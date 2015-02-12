@@ -59,7 +59,6 @@ get "/delete_genre" do
 end
 
 before "/delete_genre_confirm" do
-  puts "#{params[:id]}"
   @products = Product.where_category_id_is(params[:id].to_i)
   if @products != []
     request.path_info = "/error"
@@ -94,7 +93,7 @@ get "/delete_location" do
 end
 
 before "/delete_location_confirm" do
-  @products = Product.search_where_location_id_is(params[:id])
+  @products = Product.where_location_id_is(params[:id].to_i)
   if @products != []
     request.path_info = "/error"
   end
