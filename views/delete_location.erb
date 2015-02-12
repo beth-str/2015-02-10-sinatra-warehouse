@@ -1,14 +1,10 @@
-<form action="/result">
-  <h2>Enter the data below:</h2>
+<h3>Warning: If products are assigned to this location, it cannot be deleted.</h3>
 
-  <p>Amount Spent ($):<br>
-  <input type="number" step="0.01" name="amount"></p>
+<%= Location.all %>
 
-  <p>Gallons of Fuel:<br>
-  <input type="number" step="0.25" name="gallons"></p>
-  <br>
+<form action="/delete_location_confirm">
+  <p>Enter the location to be deleted:</p>
+  <p>Location ID:<br>
+  <input type="text" required name="id"></p> 
   <input type="submit">
 </form>
-
-
-<p><a href="/">Return to the Main Menu</a></p>

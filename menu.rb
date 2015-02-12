@@ -1,5 +1,7 @@
+require 'pry'
 require 'sinatra'
 require 'sqlite3'
+DATABASE = SQLite3::Database.new("warehouse.db")
 require_relative "2015-02-05-warehouse/category"
 require_relative "2015-02-05-warehouse/db_setup"
 require_relative "2015-02-05-warehouse/location"
@@ -49,6 +51,8 @@ get "/add_genre" do
 end
 
 get "/add_genre_confirm" do
+  @x = Category.new(params)
+  @x.insert
   erb :add_genre_confirm, :layout => :boilerplate
 end
 
@@ -57,7 +61,7 @@ get "/delete_genre" do
 end
 
 get "/delete_genre_confirm" do
-  Category.delete(params["id"])
+  x = DATABASE.execute("DELETE FROM categories WHERE id = 'params[:id]'")
   erb :delete_genre_confirm, :layout => :boilerplate
 end
 
@@ -66,6 +70,8 @@ get "/add_location" do
 end
 
 get "/add_location_confirm" do
+  @x = Location.new(params)
+  @x.insert
   erb :add_location_confirm, :layout => :boilerplate
 end
 
@@ -74,13 +80,14 @@ get "/delete_location" do
 end
 
 get "/delete_location_confirm" do
-  Location.delete(params["id"])
+  x = DATABASE.execute("DELETE FROM locations WHERE id = 'params[:id]'")
   erb :delete_location_confirm, :layout => :boilerplate
 end
 
-#
-# get "/result" do
-#   @result = (params[:amount].to_f.round(2) / params[:gallons].to_f.round(2))
-#
-#   erb :result, :layout => :boilerplate
-# end
+get "/show_product" do
+  erb :show_product, :layout => :boilerplate
+end
+
+get "/show_product_confirm" do
+  erb :show_product_confirm, :layout => :boilerplate
+end
