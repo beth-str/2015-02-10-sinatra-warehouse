@@ -62,7 +62,7 @@ class Category
     # Public: .delete
     # Deletes a single genre if no products are assigned to it
     #
-    # Parameter: location_id
+    # Parameter: Integer: location_id
     #
     # Returns: None
     #

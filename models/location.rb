@@ -56,36 +56,11 @@ class Location
       return results_as_objects
   end
 
-  def display
-   attributes = []
-   query_components_array = []
-
-   instance_variables.each do |i|
-     attributes << i.to_s.delete("@")
-   end
-
-   attributes.each do |a|
-     value = self.send(a)
-     if value.is_a?(Float)
-       front_spacer = " " * (12 - a.length)
-       back_spacer = " " * (49 - ("#{self.send(a)}".length))
-       puts "#{a}:" + "#{front_spacer}" + "#{back_spacer}" + "$#{self.send(a)}"
-     else
-       front_spacer = " " * (12 - a.length)
-       back_spacer = " " * (50 - ("#{self.send(a)}".length))
-       puts "#{a}:" + "#{front_spacer}" + "#{back_spacer}" + "#{self.send(a)}"
-     end
-   end
-   puts "=" * 63
-   return
-  end
-
-
   #---------------------------------------------------------
   # Public: .delete
   # Deletes a single location if no products are assigned to it
   #
-  # Parameter: location_id
+  # Parameter: Integer (location_id)
   #
   # Returns: None
   #
@@ -94,14 +69,5 @@ class Location
   def self.delete(id_to_remove)
       DATABASE.execute("DELETE FROM locations WHERE id = #{id_to_remove}")
   end
-
-  # def self.delete(id_to_remove)
-  #   x = DATABASE.execute("SELECT location_id FROM products WHERE location_id = #{id_to_remove}")
-  #   if x.length == 0
-  #     DATABASE.execute("DELETE FROM locations WHERE id = #{id_to_remove}")
-  #   else
-  #     DATABASE.execute("SELECT * FROM products WHERE location_id = #{id_to_remove}")
-  #   end
-  # end
 
 end

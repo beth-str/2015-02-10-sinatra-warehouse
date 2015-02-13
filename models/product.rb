@@ -87,7 +87,7 @@ end
     # Public: .delete
     # Deletes a single product 
     #
-    # Parameter: title
+    # Parameter: String: title
     #
     # Returns: None
     #

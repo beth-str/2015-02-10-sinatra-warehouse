@@ -18,7 +18,7 @@ module WarehouseHelper
     # for Product Class
     # Resets the values of an edited object and adds id back in. 
     #
-    # Parameter: params (from web form)
+    # Parameter: Hash: (params-from web form)
     #
     # Returns: An object with all new fields
   #---------------------------------------------------------
@@ -35,7 +35,7 @@ module WarehouseHelper
     # for Product Class
     # Searches the Product class for a single title. 
     #
-    # Parameter: title
+    # Parameter: String: title
     #
     # Returns: Single Product object with matching title (passed as argument)
   #---------------------------------------------------------
@@ -49,7 +49,7 @@ module WarehouseHelper
       # Public: .where_id_is
       # Searches the Product class for a single id.
       #
-      # Parameter: id
+      # Parameter: Integer: id
       #
       # Returns: Single Product object with matching id (passed as argument)
     #---------------------------------------------------------
@@ -65,7 +65,7 @@ module WarehouseHelper
     # 
     # Searches for all products assigned to a specific category (genre) 
     #
-    # Parameter: id (category_id)
+    # Parameter: Integer: id (category_id)
     #
     # Returns: An array of hashes (only used to determine empty array or array of something)
   #---------------------------------------------------------
@@ -80,7 +80,7 @@ module WarehouseHelper
     # 
     # Searches for all products assigned to a specific location (city) 
     #
-    # Parameter: id (location_id)
+    # Parameter: Integer: id (location_id)
     #
     # Returns: An array of hashes (only used to determine empty array or array of something)
   #---------------------------------------------------------
