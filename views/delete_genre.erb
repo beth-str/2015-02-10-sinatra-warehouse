@@ -2,14 +2,17 @@
 
 <h3>Current Genres:</h3>
   <% @results_as_objects.each do |x| %>
-    <h4 class="indent"><%= x.id %>. <%= x.genre %></h4>
+    <h4 class="indent"><%= x.id %>. <%= x.genre %>
+    </h4>
   <% end %>
 
 <hr>
 
 <form action="/delete_genre_confirm">
-  <p>Enter the id of the genre to be deleted :</p>
+  <p>Enter the id of the genre to be deleted:
+  </p>
   <p>Category ID:<br>
-    <input type="text" required name="id"></p>
+    <input type="text" required name="id">
+  </p>
   <input type="submit">
 </form>
