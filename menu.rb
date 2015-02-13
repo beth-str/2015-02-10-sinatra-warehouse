@@ -34,8 +34,8 @@ get "/edit_product_form" do
 end
 
 get "/edit_product_confirm" do
-  x = Product.where_id_is(params[:id])  
-  results.save(params)    #results is object
+  x = Product.new(params)
+  x.save(params)
   erb :edit_product_confirm
 end
 
